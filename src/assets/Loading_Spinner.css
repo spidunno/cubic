@@ -1,0 +1,17 @@
+.Loading_Spinner {
+	transform-box: fill-box;
+	transform-origin: 50% 50%
+}
+.Front_Face {
+	animation: 0.5s linear 0s 1 normal forwards running Front_Face;
+	transform-box: fill-box;
+	transform-origin: 50% 50%
+}
+@keyframes Front_Face {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(-180deg);
+	}
+}

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<link rel="icon" type="image/svg+xml" href="/vite.svg" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Vite + React + TS</title>
+</head>
+
+<body>
+	<!-- This script immediately runs since it's inline and prevents the flash of light mode when the page first loads -->
+	<script>
+		(function () {
+			try {
+				var mode = localStorage.getItem('joy-mode') || 'system';
+				var colorScheme = '';
+				if (mode === 'system') {
+					// handle system mode
+					var mql = window.matchMedia('(prefers-color-scheme: dark)');
+					if (mql.matches) {
+						colorScheme = localStorage.getItem('joy-color-scheme-dark') || 'dark';
+					} else {
+						colorScheme = localStorage.getItem('joy-color-scheme-light') || 'light';
+					}
+				}
+				if (mode === 'light') {
+					colorScheme = localStorage.getItem('joy-color-scheme-light') || 'light';
+				}
+				if (mode === 'dark') {
+					colorScheme = localStorage.getItem('joy-color-scheme-dark') || 'dark';
+				}
+				if (colorScheme) {
+					document.documentElement.setAttribute('data-joy-color-scheme', colorScheme);
+				}
+			} catch (e) { }
+		})();
+	</script>
+
+	<div id="root"></div>
+	<script type="module" src="/src/main.tsx"></script>
+</body>
+
+</html>
