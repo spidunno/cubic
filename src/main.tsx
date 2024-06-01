@@ -9,7 +9,7 @@ import {
 import Root from './routes/root.tsx';
 import { CssBaseline, CssVarsProvider } from '@mui/joy';
 import Settings from './routes/settings.tsx';
-
+import 'scramble-display';
 
 const router = createBrowserRouter([
 	{
