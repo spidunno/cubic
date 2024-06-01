@@ -8,7 +8,7 @@ export const timer_delay = atomWithStorage('timer_delay', 0.2, undefined, {getOn
 
 const default_session_id = nanoid();
 
-export const session = atomWithStorage<SessionID>('session', default_session_id)
+export const session = atomWithStorage<SessionID>('session', default_session_id, undefined, { getOnInit: true });
 export const sessions = atomWithStorage<Sessions>('sessions', 
 	{
 		[default_session_id]: {

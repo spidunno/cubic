@@ -1,11 +1,32 @@
 import { Link, Outlet, useMatch } from "react-router-dom";
 import '@fontsource/inter';
+import '@fontsource/roboto-mono'
 import { Sheet, Stack } from "@mui/joy";
 import { Settings, SettingsOutlined, Timer, TimerOutlined } from "@mui/icons-material";
 import LinkButton from "../components/LinkButton";
 import CubicLogo from "../assets/cubic_logo";
+import * as settings from '../global_settings';
+import { useAtom } from "jotai";
+import { useEffect } from "react";
 
 export default function Root() {
+	const [session, setSession] = useAtom(settings.session);
+	const [sessions, setSessions] = useAtom(settings.sessions);
+	const [solves, setSolves] = useAtom(settings.solves);
+
+
+	useEffect(() => {
+		if (localStorage.getItem('session') === null) {
+			setSession(session);
+		}
+		if (localStorage.getItem('sessions') === null) {
+			setSessions(sessions);
+		}
+		if (localStorage.getItem('solves') === null) {
+			setSolves(solves);
+		}
+	}, []);
+
 	return (
 		<Stack direction="row" sx={{width: '100%', height: '100%'}}>
 			<Sidebar/>
