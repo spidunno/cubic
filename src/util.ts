@@ -69,7 +69,7 @@ export const formatTime = (milliseconds: number, precision: number): string => {
   // const totalSeconds = Math.floor(milliseconds / 1000);
   const minutes = Math.floor((milliseconds / 1000) / 60);
   const seconds = (milliseconds / 1000) % 60;
-	return `${minutes > 0 ? `${minutes}:` : ''}${seconds.toFixed(precision)}`;
+	return `${minutes > 0 ? `${minutes}:` : ''}${seconds.toFixed(precision).split('.').map((v, i) => i === 0 ? (minutes === 0 ? v : v.padStart(2, '0')) : v).join('.')}`;
 };
 
 type ScrambleReturnType = { nextScramble: () => void, scramble: string | null}

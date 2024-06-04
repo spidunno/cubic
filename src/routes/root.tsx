@@ -6,24 +6,19 @@ import { Settings, SettingsOutlined, Timer, TimerOutlined } from "@mui/icons-mat
 import LinkButton from "../components/LinkButton";
 import CubicLogo from "../assets/cubic_logo";
 import * as settings from '../global_settings';
-import { useAtom } from "jotai";
-import { useEffect } from "react";
+import { useAtom, useAtomValue } from "jotai";
+import { useEffect, use } from "react";
 
 export default function Root() {
 	const [session, setSession] = useAtom(settings.session);
-	const [sessions, setSessions] = useAtom(settings.sessions);
-	const [solves, setSolves] = useAtom(settings.solves);
-
+	use(settings.dbCreatedPromise);
+	if (localStorage.getItem('session') === null) {
+		setSession(session);
+	}
 
 	useEffect(() => {
 		if (localStorage.getItem('session') === null) {
 			setSession(session);
-		}
-		if (localStorage.getItem('sessions') === null) {
-			setSessions(sessions);
-		}
-		if (localStorage.getItem('solves') === null) {
-			setSolves(solves);
 		}
 	}, []);
 
